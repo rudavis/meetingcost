@@ -14,6 +14,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -68,9 +69,9 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>$ Per Hour</td>
-                                <th>$ Per Minute</td>
-                                    <th>$ Per Second</td>
+                            <th>$ Per Hour</th>
+                            <th>$ Per Minute</th>
+                            <th>$ Per Second</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -99,8 +100,24 @@
             </div>
             <!-- End summation table -->
             <div class="col-md-1">&nbsp;</div>
+            <!-- End 1 col spacer -->
             <div class="well col-md-4">
+                <!-- Begin Calc on left -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-9 text-right">
+                                <span id="calcDisplay" class="form-control">{{calculatorDisplay | currency}}</span>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-default pull-right" ng-click="onClickClear()">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <table class="table">
+                    <!--
                     <thead>
                         <tr>
                             <td colspan="2">
@@ -111,6 +128,7 @@
                             </td>
                         </tr>
                     </thead>
+                -->
                     <tbody>
                         <tr>
                             <td>
@@ -162,6 +180,11 @@
             <!-- End calculator col -->
         </div>
         <!-- End main content Row -->
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+        </div>
     </div>
     <!-- /container -->
 
