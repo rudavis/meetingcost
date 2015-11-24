@@ -37,7 +37,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">How Much Does This Meeting Cost?</a>
+                    <!--<a class="navbar-brand" href="#">How Much Does This Meeting Cost?</a>-->
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -62,11 +62,24 @@
             </div>
             <!--/.container-fluid -->
         </nav>
-
+        <script type="text/javascript">
+            function testing(element) {
+                console.log(element);
+            };
+        </script>
         <!-- Begin main body content -->
         <div class="row">
-            <div class="col-md-7">
-                <table class="table table-bordered">
+            <div class="col-md-8">
+                <div class="page-header">
+                    <h1>How much does this meeting cost?</h1>
+                    <p>Ever been in a meeting that just keeps dragging on and on? Maybe if everyone knew how much that time was costing the company, they'd get to the dam point faster.</p>
+                    <p>Use the calculator to enter everyone's hourly rate and see just how much this meeting costs $$$</p>
+                </div>
+                <div ng-hide="hasTotal">
+                    <br />
+                    <h2>Use the calculator to enter hourly rates ---></h2>
+                </div>
+                <table class="table table-bordered" ng-show="hasTotal">
                     <thead>
                         <tr>
                             <th>$ Per Hour</th>
@@ -75,33 +88,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>$600.00</td>
-                            <td>$60.00</td>
-                            <td>$6.00</td>
-                        </tr>
-                        <tr>
-                            <td>$600.00</td>
-                            <td>$60.00</td>
-                            <td>$6.00</td>
-                        </tr>
-                        <tr>
-                            <td>$600.00</td>
-                            <td>$60.00</td>
-                            <td>$6.00</td>
+                        <tr ng-repeat="rate in rates">
+                            <td>{{rate | currency}}</td>
+                            <td>{{rate / 60 | currency}}</td>
+                            <td>{{rate / 60 / 60 | currency}}<a href="#" class="pull-right" ng-click="deleteRow($index)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                            <!--
+                               <td>
+                                <button type="button" class="btn btn-link btn-sm" aria-label="remove row">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                            -->
                         </tr>
                         <tr class="success">
-                            <td>$600.00</td>
-                            <td>$60.00</td>
-                            <td>$6.00</td>
+                            <td>{{totalRate | currency}}</td>
+                            <td>{{totalRate / 60 | currency}}</td>
+                            <td>{{totalRate /60 / 60 | currency}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <!-- End summation table -->
-            <div class="col-md-1">&nbsp;</div>
-            <!-- End 1 col spacer -->
-            <div class="well col-md-4">
+            <div class="col-md-4 well">
                 <!-- Begin Calc on left -->
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -180,11 +188,6 @@
             <!-- End calculator col -->
         </div>
         <!-- End main content Row -->
-        <div class="row">
-            <div class="col-md-4">
-
-            </div>
-        </div>
     </div>
     <!-- /container -->
 
@@ -194,8 +197,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
     <script src="js/MeetingCost.js"></script>
